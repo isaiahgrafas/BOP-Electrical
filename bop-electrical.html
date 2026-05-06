@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bay of Plenty Electrical | Electricians Tauranga & BOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0c0c0e;
+  --dark: #13131a;
+  --panel: #1c1c26;
+  --muted: #52526a;
+  --silver: #9090a8;
+  --light: #c8c8d8;
+  --white: #f2f2f8;
+  --electric: #4d7cff;
+  --electric-light: #7a9fff;
+  --electric-glow: rgba(77,124,255,0.12);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Familjen Grotesk', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(13,13,20,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(77,124,255,0.12);
+}
+.nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--electric); font-style: italic; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--silver); text-decoration: none; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--electric); }
+.nav-cta { background: var(--electric) !important; color: var(--white) !important; padding: 0.55rem 1.5rem; border-radius: 4px; font-weight: 500 !important; }
+
+.hero {
+  min-height: 100vh; padding-top: 80px;
+  background: var(--dark);
+  display: grid; grid-template-columns: 1.2fr 0.8fr;
+  align-items: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(77,124,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(77,124,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(77,124,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px; pointer-events: none;
+}
+.hero-left { padding: 5rem 4rem 5rem 3rem; position: relative; z-index: 2; }
+.hero-kicker { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--electric); font-weight: 500; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; animation: fadeUp 0.7s ease 0.1s both; }
+.hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--electric); display: block; }
+.hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(3.5rem, 6.5vw, 7rem); line-height: 0.95; color: var(--white); margin-bottom: 2rem; animation: fadeUp 0.7s ease 0.2s both; }
+.hero-title em { font-style: italic; color: var(--electric-light); }
+.hero-title .sub { font-family: 'Familjen Grotesk', sans-serif; font-size: 0.5em; font-weight: 500; display: block; color: var(--silver); letter-spacing: 0.05em; margin-top: 0.5rem; font-style: normal; }
+.hero-desc { font-size: 1rem; color: var(--light); line-height: 1.85; max-width: 460px; margin-bottom: 3rem; animation: fadeUp 0.7s ease 0.35s both; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.45s both; }
+.btn-electric { background: var(--electric); color: var(--white); padding: 0.9rem 2.2rem; border: none; font-family: 'Familjen Grotesk', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; border-radius: 4px; }
+.btn-electric:hover { background: var(--electric-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(77,124,255,0.3); }
+.btn-outline { background: transparent; color: var(--light); padding: 0.9rem 2.2rem; border: 1px solid rgba(77,124,255,0.3); font-family: 'Familjen Grotesk', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; border-radius: 4px; }
+.btn-outline:hover { border-color: var(--electric); color: var(--electric); }
+
+.hero-right { padding: 3rem 3rem 3rem 0; display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 2; animation: fadeUp 0.7s ease 0.5s both; }
+.metric { background: var(--panel); border: 1px solid rgba(77,124,255,0.12); border-left: 3px solid var(--electric); padding: 1.25rem 1.75rem; border-radius: 4px; display: flex; align-items: center; gap: 1.25rem; transition: all 0.2s; }
+.metric:hover { background: rgba(77,124,255,0.05); border-color: rgba(77,124,255,0.3); }
+.metric-num { font-family: 'Instrument Serif', serif; font-size: 2.5rem; font-style: italic; color: var(--electric); line-height: 1; flex-shrink: 0; }
+.metric-title { font-size: 0.88rem; font-weight: 500; color: var(--white); }
+.metric-sub { font-size: 0.75rem; color: var(--silver); margin-top: 0.15rem; }
+
+.blue-band { background: var(--electric); padding: 1rem 3rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.bb-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+.bb-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+
+section { padding: 7rem 3rem; }
+.inner { max-width: 1200px; margin: 0 auto; }
+.sec-tag { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--electric); font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+.sec-tag::before { content: ''; width: 20px; height: 1px; background: var(--electric); display: block; }
+.sec-title { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1.05; color: var(--white); margin-bottom: 1.5rem; }
+.sec-title em { font-style: italic; color: var(--electric-light); }
+
+#services { background: var(--dark); }
+.services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: end; }
+.services-header p { font-size: 1rem; color: var(--silver); line-height: 1.85; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(77,124,255,0.08); border: 1px solid rgba(77,124,255,0.08); }
+.svc { background: var(--dark); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.3s; cursor: default; }
+.svc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--electric); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.svc:hover { background: var(--panel); }
+.svc:hover::before { transform: scaleX(1); }
+.svc-icon { width: 40px; height: 40px; background: var(--electric-glow); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 1px solid rgba(77,124,255,0.2); }
+.svc-name { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+.svc-body { font-size: 0.87rem; color: var(--silver); line-height: 1.75; }
+
+#about { background: var(--panel); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-card { background: var(--dark); border: 1px solid rgba(77,124,255,0.15); border-top: 3px solid var(--electric); padding: 3rem; border-radius: 4px; }
+.quote-open { font-family: 'Instrument Serif', serif; font-size: 5rem; color: var(--electric); opacity: 0.2; line-height: 0.6; margin-bottom: 1rem; }
+.quote-body { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--light); line-height: 1.65; margin-bottom: 1.5rem; }
+.quote-attr { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--electric); font-weight: 500; }
+.cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.cred-item { background: rgba(77,124,255,0.06); border: 1px solid rgba(77,124,255,0.12); padding: 1rem; border-radius: 4px; text-align: center; }
+.cred-val { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: var(--electric); line-height: 1; }
+.cred-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 0.25rem; }
+.about-content p { font-size: 1rem; color: var(--silver); line-height: 1.9; margin-bottom: 1.25rem; }
+.checks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+.chk { display: flex; align-items: center; gap: 0.6rem; font-size: 0.83rem; color: var(--light); }
+.chk-icon { width: 18px; height: 18px; border-radius: 50%; background: var(--electric); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+#process { background: var(--black); }
+.proc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 4rem; position: relative; }
+.proc-steps::before { content: ''; position: absolute; top: 28px; left: 6%; right: 6%; height: 1px; background: linear-gradient(90deg, transparent, var(--electric) 20%, var(--electric) 80%, transparent); opacity: 0.3; }
+.proc-step { padding: 0 1.5rem; text-align: center; }
+.proc-num { width: 56px; height: 56px; border-radius: 50%; background: var(--electric-glow); border: 2px solid var(--electric); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: var(--electric); position: relative; z-index: 1; }
+.proc-title { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.proc-body { font-size: 0.83rem; color: var(--silver); line-height: 1.7; }
+
+.area-band { background: var(--panel); border-top: 1px solid rgba(77,124,255,0.15); border-bottom: 1px solid rgba(77,124,255,0.15); padding: 1.1rem 3rem; text-align: center; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
+
+#contact { background: var(--dark); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact-left > p { font-size: 1rem; color: var(--silver); line-height: 1.85; max-width: 400px; margin-bottom: 3rem; }
+.ci { margin-bottom: 1.75rem; }
+.ci-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--electric); font-weight: 500; margin-bottom: 0.35rem; }
+.ci-val { font-size: 1rem; color: var(--white); text-decoration: none; transition: color 0.2s; display: block; }
+a.ci-val:hover { color: var(--electric); }
+.c-form { background: var(--panel); border: 1px solid rgba(77,124,255,0.12); border-top: 3px solid var(--electric); padding: 3rem; border-radius: 0 0 4px 4px; }
+.c-form-title { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 2rem; }
+.fr { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fg { margin-bottom: 1rem; }
+.fg label { display: block; font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.4rem; font-weight: 500; }
+.fg input, .fg select, .fg textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(77,124,255,0.15); color: var(--white); padding: 0.75rem 1rem; font-family: 'Familjen Grotesk', sans-serif; font-size: 0.9rem; border-radius: 4px; transition: border-color 0.2s; outline: none; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--electric); }
+.fg textarea { resize: vertical; min-height: 100px; }
+.fg select option { background: var(--panel); }
+.c-submit { width: 100%; background: var(--electric); color: var(--white); border: none; padding: 1rem; font-family: 'Familjen Grotesk', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 4px; margin-top: 0.5rem; transition: all 0.25s; }
+.c-submit:hover { background: var(--electric-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(77,124,255,0.3); }
+
+footer { background: var(--black); padding: 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid rgba(77,124,255,0.1); }
+.f-logo { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: var(--white); }
+.f-logo span { color: var(--electric); font-style: italic; }
+.f-sub { font-size: 0.68rem; color: var(--muted); margin-top: 0.25rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.f-links { display: flex; gap: 2rem; list-style: none; }
+.f-links a { font-size: 0.7rem; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+.f-links a:hover { color: var(--electric); }
+.f-copy { font-size: 0.65rem; color: #1c1c26; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 3rem 1.5rem; }
+  .hero-right { display: none; }
+  .services-header, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .proc-steps { grid-template-columns: 1fr 1fr; }
+  .proc-steps::before { display: none; }
+  .fr { grid-template-columns: 1fr; }
+  .blue-band { padding: 1rem 1.5rem; gap: 1.5rem; }
+  footer { padding: 2rem 1.5rem; }
+  .checks { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">BOP <span>Electrical</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-kicker">Tauranga · Mt Maunganui · Papamoa · Bay of Plenty</div>
+    <h1 class="hero-title">
+      Honest &amp;<br><em>reliable.</em>
+      <span class="sub">Electricians you can actually trust.</span>
+    </h1>
+    <p class="hero-desc">Bay of Plenty Electrical is a locally owned and operated electrical company serving residential, commercial and rural clients across the Bay since 2013. Quality work, clear communication, and a team that shows up when they say they will.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-electric">Get a Free Quote</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="metric"><div class="metric-num">20+</div><div><div class="metric-title">Years Experience</div><div class="metric-sub">Residential, commercial &amp; rural</div></div></div>
+    <div class="metric"><div class="metric-num">24/7</div><div><div class="metric-title">Emergency Call-Outs</div><div class="metric-sub">Available around the clock</div></div></div>
+    <div class="metric"><div class="metric-num">100%</div><div><div class="metric-title">Satisfaction Guarantee</div><div class="metric-sub">We stand behind every job</div></div></div>
+    <div class="metric"><div class="metric-num">2013</div><div><div class="metric-title">Family Owned &amp; Operated</div><div class="metric-sub">Bay of Plenty proud</div></div></div>
+  </div>
+</section>
+
+<div class="blue-band">
+  <div class="bb-item"><div class="bb-dot"></div>Residential</div>
+  <div class="bb-item"><div class="bb-dot"></div>Commercial</div>
+  <div class="bb-item"><div class="bb-dot"></div>Rural</div>
+  <div class="bb-item"><div class="bb-dot"></div>24/7 Emergency</div>
+  <div class="bb-item"><div class="bb-dot"></div>Locally Owned</div>
+  <div class="bb-item"><div class="bb-dot"></div>Free Quotes</div>
+</div>
+
+<section id="services">
+  <div class="inner">
+    <div class="services-header">
+      <div>
+        <div class="sec-tag">What We Do</div>
+        <h2 class="sec-title">Every electrical job,<br><em>done right.</em></h2>
+      </div>
+      <div><p>From a single power point to a full new build installation — BOP Electrical brings 20+ years of experience to every job. We carry common parts, work cleanly, and leave your property tidy. No drama, no mess, just great work.</p></div>
+    </div>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="svc-name">Residential</div>
+        <p class="svc-body">New builds, renovations, rewires, switchboard upgrades, lighting, power points, heat pumps, EV chargers and more across the Bay of Plenty.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <div class="svc-name">Commercial</div>
+        <p class="svc-body">Office and retail fit-outs, lighting design, data and communications, preventative maintenance plans and emergency lighting for businesses.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="svc-name">Rural</div>
+        <p class="svc-body">Comprehensive rural electrical services tailored to remote and off-grid areas. Sheds, farm buildings, pump installations and rural infrastructure.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="svc-name">24/7 Emergency</div>
+        <p class="svc-body">Electrical emergencies don't wait. Our call-out service is available 24 hours a day, 7 days a week for urgent faults, outages and safety issues.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="svc-name">Solar &amp; EV Chargers</div>
+        <p class="svc-body">Solar system installation and EV charger setup for homes and businesses. Future-proof your property with clean energy solutions across the BOP.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="svc-name">Security &amp; Data</div>
+        <p class="svc-body">CCTV, security alarms, access control, data and fibre optics, audio-visual systems and home automation. Complete connectivity solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div>
+        <div class="about-card">
+          <div class="quote-open">"</div>
+          <p class="quote-body">We take pride in providing a personalised and friendly service — tailoring every job to suit your specific needs, and leaving your property clean and tidy when we're done.</p>
+          <div class="quote-attr">— BOP Electrical</div>
+          <div class="cred-grid">
+            <div class="cred-item"><div class="cred-val">20+</div><div class="cred-label">Yrs Experience</div></div>
+            <div class="cred-item"><div class="cred-val">2013</div><div class="cred-label">Established</div></div>
+            <div class="cred-item"><div class="cred-val">24/7</div><div class="cred-label">Emergency</div></div>
+            <div class="cred-item"><div class="cred-val">100%</div><div class="cred-label">Guarantee</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="sec-tag">About Us</div>
+        <h2 class="sec-title">Locally owned.<br><em>Bay of Plenty proud.</em></h2>
+        <p>Bay of Plenty Electrical is a family owned and operated company that has been serving the Bay since 2013. With 20+ years of combined experience, we handle jobs of any size — from a single power point to a full new build fit-out.</p>
+        <p>We're honest, we communicate clearly, and we turn up when we say we will. We carry common parts so we can get the job done in one visit, we use drop sheets, and we clean up when we leave.</p>
+        <p>We meet all legal and professional requirements for electricians in NZ — and we're happy to answer any questions along the way.</p>
+        <div class="checks">
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Fully licensed &amp; qualified</div>
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>100% satisfaction guarantee</div>
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>On time, every time</div>
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Clean &amp; tidy worksite</div>
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>24/7 emergency available</div>
+          <div class="chk"><div class="chk-icon"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Family owned &amp; operated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="inner">
+    <div class="sec-tag">How It Works</div>
+    <h2 class="sec-title">Simple from<br><em>start to finish.</em></h2>
+    <div class="proc-steps">
+      <div class="proc-step"><div class="proc-num">1</div><div class="proc-title">Get in Touch</div><p class="proc-body">Call or fill in the form. We respond fast — same day for most enquiries, immediately for emergencies.</p></div>
+      <div class="proc-step"><div class="proc-num">2</div><div class="proc-title">Free Quote</div><p class="proc-body">We visit your property, assess the job, and give you a clear upfront quote with no hidden costs.</p></div>
+      <div class="proc-step"><div class="proc-num">3</div><div class="proc-title">We Get to Work</div><p class="proc-body">Our qualified team completes the job efficiently, cleanly, and to the highest standard.</p></div>
+      <div class="proc-step"><div class="proc-num">4</div><div class="proc-title">Done Right</div><p class="proc-body">We walk you through the completed work and make sure you're 100% happy before we leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="area-band">Tauranga · Mount Maunganui · Papamoa · Bethlehem · Katikati · Omokoroa · Te Puke · Wider Bay of Plenty</div>
+
+<section id="contact">
+  <div class="inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="sec-tag">Get in Touch</div>
+        <h2 class="sec-title">Ready to sort<br><em>your electrics?</em></h2>
+        <p>Give us a call or fill in the form and we'll get back to you fast. For urgent jobs, call directly — we're available 24/7.</p>
+        <div class="ci"><div class="ci-label">Area Covered</div><span class="ci-val">Tauranga, Mt Maunganui, Papamoa &amp; wider BOP</span></div>
+        <div class="ci"><div class="ci-label">Emergency</div><span class="ci-val">Available 24 hours, 7 days</span></div>
+        <div class="ci"><div class="ci-label">Established</div><span class="ci-val">Family owned &amp; operated since 2013</span></div>
+      </div>
+      <div>
+        <div class="c-form">
+          <div class="c-form-title">Request a Free Quote</div>
+          <div class="fr">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="John"></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="021 000 0000"></div>
+          <div class="fg">
+            <label>Type of Work</label>
+            <select>
+              <option value="">Select a category...</option>
+              <option>Residential</option>
+              <option>Commercial</option>
+              <option>Rural</option>
+              <option>Emergency</option>
+              <option>Solar / EV Charger</option>
+              <option>Security / CCTV</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell us about your job</label><textarea placeholder="Brief overview — what you need done, your location, any urgency..."></textarea></div>
+          <button class="c-submit">Send My Request →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="f-logo">BOP <span>Electrical</span></div>
+    <div class="f-sub">Bay of Plenty · Est. 2013</div>
+  </div>
+  <ul class="f-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="f-copy">© 2025 Bay of Plenty Electrical. Locally owned &amp; operated.</div>
+</footer>
+
+<script>
+  document.querySelector('.c-submit').addEventListener('click', function(e) {
+    e.preventDefault();
+    this.textContent = "Sent! We'll be in touch soon.";
+    this.style.background = '#27ae60';
+    this.disabled = true;
+  });
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--electric)' : ''; });
+  });
+</script>
+</body>
+</html>
